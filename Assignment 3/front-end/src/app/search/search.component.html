@@ -1,0 +1,17 @@
+<div class="search-block mt-3 ml-3 mr-3" id="searchContent">
+    <h1 class="text-center">STOCK SEARCH</h1>
+    <div class="input-group row justify-content-center">
+        <input type="text" class="form-control col-md-3 input-box" id="tickerInputText"
+            placeholder="Enter stock ticker symbol" aria-label="Enter stock ticker symbol"
+            aria-describedby="search-addon" #tickerInput>
+        <div class="input-group-append">
+            <button type="button" class="btn btn-search px-3 py-1" id="tickerInputBtn"
+                (click)="fetchDataFromServer(tickerInput.value)"><i class="bi bi-search"></i></button>
+            <button type="button" class="btn btn-cancel px-3 py-1" (click)="clear()"><i class="bi bi-x"></i></button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <pre>{{ responseData | json }}</pre>
+</div>

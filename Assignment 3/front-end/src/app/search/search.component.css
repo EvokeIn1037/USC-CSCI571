@@ -1,0 +1,29 @@
+.input-box,
+.btn-search,
+.btn-cancel {
+    border-color: rgb(35, 35, 170);
+    border-width: 4px;
+    height: auto;
+}
+
+.btn-search,
+.btn-cancel {
+    background-color: white;
+    background-position: center;
+    background-size: 50%;
+}
+
+.input-box {
+    border-right: none !important;
+}
+
+.btn-search {
+    border-left: none !important;
+    border-right: none !important;
+    /* background-repeat: no-repeat; */
+}
+
+.btn-cancel {
+    border-left: none !important;
+    /* background-repeat: no-repeat; */
+}

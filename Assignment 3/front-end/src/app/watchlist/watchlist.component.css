@@ -1,0 +1,37 @@
+.ml-15 {
+    margin-left: 15rem !important;
+    /* Adjust the value as needed */
+}
+
+.mr-15 {
+    margin-right: 15rem !important;
+    /* Adjust the value as needed */
+}
+
+.ml-10 {
+    margin-left: 10rem !important;
+    /* Adjust the value as needed */
+}
+
+.mr-10 {
+    margin-right: 10rem !important;
+    /* Adjust the value as needed */
+}
+
+.mat-card-style {
+    height: 150px;
+    background-color: rgb(236, 236, 236);
+    border-color: lightgray;
+}
+
+.error-span {
+    background-color: rgb(158, 158, 84);
+    width: 75%;
+    height: auto;
+    aspect-ratio: 25/1;
+    margin-left: 12.5%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

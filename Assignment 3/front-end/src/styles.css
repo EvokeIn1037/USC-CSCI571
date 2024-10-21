@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./style/style.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-tab-list {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-tab-label[aria-selected="true"] .mat-tab-label-content {
+    font-weight: bold;
+    color: #3f51b5;
+}
+
+@media (max-width: 768px) {
+    .modal-window-mobile {
+        min-width: 80%;
+    }
+}

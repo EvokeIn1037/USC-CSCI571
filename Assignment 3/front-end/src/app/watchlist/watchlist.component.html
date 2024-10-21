@@ -1,0 +1,25 @@
+<div class="watchlist-block mt-3 ml-15 mr-15" id="watchlistContent">
+    <h1>My Watchlist</h1>
+</div>
+
+<div class="mt-5 error-span" id="error-msg" [hidden]="isHidden"><span class="text-center">Currently you don't have any
+        stock in your watchlist.</span>
+</div>
+
+<div>
+    <mat-card *ngFor="let list of watchlist"
+        class="d-flex flex-row align-items-center mt-2 mb-2 ml-10 mr-10 mat-card-style">
+        <mat-card-content class="ml-1 mr-1 text-center">
+            <div><button (click)="delete()"><i class="bi bi-x"></i></button></div>
+            <div>
+                <div>{{ list.t }}</div>
+                <div>{{ list.n }}</div>
+            </div>
+            <div>
+                <div>{{ list.c }}</div>
+                <div>{{ list.d }}</div>
+                <div>{{ list.dp }}</div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

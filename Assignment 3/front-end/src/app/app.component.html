@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-light">
+  <h2 class="navbar-brand text-white mb-0">Stock Search</h2>
+  <button type="button" class="navbar-toggler bg-white" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button type="button" class="nav-link text-white rounded-pill px-3 py-1" id="searchNavBtn"
+          routerLink="">Search</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="nav-link text-white rounded-pill px-3 py-1" id="watchlistNavBtn"
+          routerLink="/watchlist">Watchlist</button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="nav-link text-white rounded-pill px-3 py-1" id="portfolioNavBtn"
+          routerLink="/portfolio">Portfolio</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

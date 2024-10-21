@@ -1,0 +1,176 @@
+<div class="search-block mt-3 ml-3 mr-3" id="searchContent">
+    <h1 class="text-center">STOCK SEARCH</h1>
+    <div class="input-group row justify-content-center">
+        <input type="text" class="form-control col-md-3 input-box" id="tickerInputText"
+            placeholder="Enter stock ticker symbol" aria-label="Enter stock ticker symbol"
+            aria-describedby="search-addon" #tickerInput matInput [formControl]="inputControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+            <mat-option *ngFor="let option of options" [value]="option.symbol">
+                {{ option.symbol }} | {{ option.description }}
+            </mat-option>
+            <mat-option *ngIf="loadingIcon" disabled>
+                <mat-spinner diameter="20"></mat-spinner>
+            </mat-option>
+        </mat-autocomplete>
+        <div class="input-group-append">
+            <button type="button" class="btn btn-search px-3 py-1" id="tickerInputBtn"
+                (click)="fetchDataFromServer(tickerInput.value)"><i class="bi bi-search"></i></button>
+            <button type="button" class="btn btn-cancel px-3 py-1" routerLink=""><i class="bi bi-x"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 error-span" id="error-msg" [hidden]="isHidden"><span class="text-center">No data
+        found. Please enter a valid Ticker</span>
+</div>
+<div class="mt-5 bg-success" id="success-msg" [hidden]="isAddToList"><span class="text-center"
+        [innerHTML]="isAddToWatchlist"></span>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <mat-progress-spinner *ngIf="loadingTicker" mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div>
+    <div class="d-flex flex-row justify-content-center align-items-center base-info">
+        <div class="d-flex flex-column justify-content-center align-items-center description-info">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="mb-0" [innerHTML]="descriptionTicker"></h1>
+                <button type="button" class="btn ml-1 mr-1" (click)="watchlist(1)" [hidden]="inWatchlist"><i
+                        class="bi bi-star"></i></button>
+                <button type="button" class="btn ml-1 mr-1" (click)="watchlist(0)" [hidden]="outWatchlist"><i
+                        class="bi bi-star-fill in-watchlist"></i></button>
+            </div>
+            <h2 class="mb-0" [innerHTML]="descriptionName"></h2>
+            <p class="mb-0" [innerHTML]="descriptionExchange"></p>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+                <button type="button" class="btn btn-success ml-1 mr-1">Buy</button>
+                <button type="button" class="btn btn-danger ml-1 mr-1">Sell</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center logo-info">
+            <img class="img-fluid" [src]="logoUrl">
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center lastPrice-info"
+            [innerHTML]="lastPriceInfo"></div>
+    </div>
+    <div class="text-center" [innerHTML]="marketState"></div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <mat-tab-group class="mat-nav-tab" (selectedTabChange)="onTabChanged($event)">
+            <mat-tab label="Summary">
+                <div class="tab-show1 d-flex flex-column flex-md-row align-items-center mt-2 mb-2">
+                    <div class="d-flex flex-column justify-content-center mt-2 mb-2 company-info">
+                        <div class="d-flex flex-row justify-content-center mt-2 mb-2 stock-info">
+                            <div class="d-flex flex-column stock-price">
+                                <div class="d-flex flex-row justify-content-center">
+                                    <span class="font-weight-bold mr-1" style="white-space: nowrap;">High
+                                        Price:</span>
+                                    <span [innerHTML]="highPrice"></span>
+                                </div>
+                                <div class="d-flex flex-row justify-content-center">
+                                    <span class="font-weight-bold mr-1" style="white-space: nowrap;">Low
+                                        Price:</span>
+                                    <span [innerHTML]="lowPrice"></span>
+                                </div>
+                                <div class="d-flex flex-row justify-content-center">
+                                    <span class="font-weight-bold mr-1" style="white-space: nowrap;">Open
+                                        Price:</span>
+                                    <span [innerHTML]="openPrice"></span>
+                                </div>
+                                <div class="d-flex flex-row justify-content-center">
+                                    <span class="font-weight-bold mr-1" style="white-space: nowrap;">Prev.
+                                        Close:</span>
+                                    <span [innerHTML]="prevClose"></span>
+                                </div>
+                            </div>
+                            <div class="stock-empty"></div>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center text-center mt-2 mb-2 company-about">
+                            <h2 class="about-company-text">About the company</h2>
+                            <div class="d-flex flex-row justify-content-center mb-2">
+                                <span class="font-weight-bold mr-1" style="white-space: nowrap;">IPO Start Date:</span>
+                                <span [innerHTML]="ipoDate"></span>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center mb-2">
+                                <span class="font-weight-bold mr-1" style="white-space: nowrap;">Industry:</span>
+                                <span [innerHTML]="industryInfo"></span>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center mb-2">
+                                <span class="font-weight-bold mr-1" style="white-space: nowrap;">Webpage:</span>
+                                <a [href]="webLink" [innerHTML]="webLinkText"></a>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center mb-2">
+                                <span class="font-weight-bold mr-1" style="white-space: nowrap;">Company peers:</span>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center mb-2">
+                                <div *ngFor="let link of routeLinks">
+                                    <a class="mr-1" [routerLink]="link.route">{{ link.label }},</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-2 hourly-price" id="hourlyChart"></div>
+                </div>
+            </mat-tab>
+            <mat-tab label="News">
+                <div class="d-flex flex-column flex-md-row mt-2 mb-2">
+                    <div class="d-flex flex-column mat-card-column">
+                        <mat-card *ngFor="let news1 of newsData1" (click)="openModal(news1)"
+                            class="d-flex flex-row align-items-center mt-2 mb-2 mat-card-style">
+                            <img class="ml-1 mr-1 mat-card-img" mat-card-image [src]="news1.image">
+                            <mat-card-content class="ml-1 mr-1 text-center">{{ news1.headline }}</mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="d-flex flex-column mat-card-column">
+                        <mat-card *ngFor="let news2 of newsData2" (click)="openModal(news2)"
+                            class="d-flex flex-row align-items-center mt-2 mb-2 mat-card-style">
+                            <img class="ml-1 mr-1 mat-card-img" mat-card-image [src]="news2.image">
+                            <mat-card-content class="ml-1 mr-1 text-center">{{ news2.headline }}</mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Charts">
+                <div class="mt-5 mb-5 stock-charts-show" id="stockChartsShow"></div>
+            </mat-tab>
+            <mat-tab label="Insights">
+                <div class="d-flex flex-column mt-2 mb-2">
+                    <div class="d-flex justify-content-center mb-1">
+                        <table class="table table-holder text-center" frame=below rules=rows>
+                            <thead>
+                                <tr>
+                                    <th scope="col" [innerHTML]="tableNameText"></th>
+                                    <th scope="col">MSPR</th>
+                                    <th scope="col">Change</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Total</th>
+                                    <td [innerHTML]="totalMSPR"></td>
+                                    <td [innerHTML]="totalChange"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Positive</th>
+                                    <td [innerHTML]="positiveMSPR"></td>
+                                    <td [innerHTML]="positiveChange"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Negative</th>
+                                    <td [innerHTML]="negativeMSPR"></td>
+                                    <td [innerHTML]="negativeChange"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center flex-md-row mt-1">
+                        <div class="trend-chart" id="trendChart"></div>
+                        <div class="eps-chart" id="epsChart"></div>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+</div>

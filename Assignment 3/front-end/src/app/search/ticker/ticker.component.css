@@ -1,0 +1,184 @@
+.input-box,
+.btn-search,
+.btn-cancel {
+    border-color: rgb(35, 35, 170);
+    border-width: 4px;
+    height: auto;
+}
+
+input.mat-input-element {
+    margin-top: 0;
+}
+
+.btn-search,
+.btn-cancel {
+    background-color: white;
+    background-position: center;
+    background-size: 50%;
+}
+
+.input-box {
+    border-right: none !important;
+}
+
+.btn-search {
+    border-left: none !important;
+    border-right: none !important;
+    /* background-repeat: no-repeat; */
+}
+
+.btn-cancel {
+    border-left: none !important;
+    /* background-repeat: no-repeat; */
+}
+
+.error-span {
+    background-color: #ffcccc;
+    width: 75%;
+    height: auto;
+    aspect-ratio: 25/1;
+    margin-left: 12.5%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#success-msg {
+    width: 75%;
+    height: auto;
+    aspect-ratio: 25/1;
+    margin-left: 12.5%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-nav-tab {
+    width: 80%;
+}
+
+.company-info {
+    width: 50%;
+}
+
+.hourly-price {
+    width: 50%;
+}
+
+.company-info, .hourly-price {
+    height: auto;
+}
+@media (max-width: 768px) {
+    .company-info, .hourly-price {
+        width: 90%;
+        margin: 0 auto; /* This centers the divs if they are block-level elements */
+    }
+}
+
+.stock-info, .company-about {
+    width: auto;
+}
+
+.stock-price, .stock-empty {
+    width: 50%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .stock-empty {
+        display: none;
+    }
+}
+
+.description-info, .lastPrice-info, .logo-info {
+    height: auto;
+}
+
+.description-info, .lastPrice-info {
+    width: 45%;
+}
+
+.logo-info {
+    width: 10%;
+}
+
+.in-watchlist {
+    color: gold;
+}
+
+.tab-show1, .tab-show2, .tab-show3, .tab-show4 {
+    display: flex;
+    justify-content: center;
+}
+
+.about-company-text {
+    text-decoration: underline;
+}
+
+.mat-card-style {
+    width: 100%;
+    height: 150px;
+    background-color: rgb(236, 236, 236);
+    border-color: lightgray;
+}
+
+.mat-card-img {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.mat-card-image:first-child {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.mat-card-image {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.mat-card-column {
+    width: 48%;
+    height: auto;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+@media (max-width: 768px) {
+    .mat-card-column {
+        width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.stock-charts-show {
+    width: 100%;
+    height: auto;
+}
+
+.table-holder {
+    width: 60%;
+}
+@media (max-width: 768px) {
+    .table-holder {
+        width: 80%;
+    }
+}
+
+.trend-chart, .eps-chart {
+    width: 48%;
+    height: auto;
+    margin-left: 1%;
+    margin-right: 1%; 
+}
+@media (max-width: 768px) {
+    .trend-chart, .eps-chart {
+        width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
